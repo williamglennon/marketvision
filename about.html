@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Loading & Linking Scipts & Stylesheets -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <!-- Website Title & Icon -->
+    <link rel="icon" href="images\icon2.png">
+    <title>Market Vision</title>
+  </head>
+  <body onload="startTime()">
+    <div class="header" id="navbar">
+      <script src="js/basic-scripts.js"></script>
+      <div class="backingTicker">
+        <div class="contentAreaTicker">
+          <div class="toptrades"><b>TOP TRADES </b></div>
+          <div class="clocktop" id="clock" align="right"></div>
+        </div>
+      </div>
+      <div class="navhead">
+        <div class="contentAreaNav">
+          <div class="logocon">
+            <a href="index.html" class="logo"><img id="my-img" src="images/logo2.png" width="200" height="60" onmouseover="hover(this);" onmouseout="unhover(this);"></a>
+          </div>
+          <div class="search">
+            <div class="search-container">
+              <form action="/action_page.php">
+                <input class="searchbar" type="text" placeholder="Search..." name="search">
+                <button type="submit">
+                  <img src="images\searchicon.png" alt="searchicon" width="20" height="20">
+                  <i class="main-search"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" style="display: block">Top Trades</a>
+            <a href="#" style="display: block">Bookmarks</a>
+            <p align="center" style="color: grey">________________________</p>
+            <a href="about.html" style="display: block">About Site</a>
+            <a href="contact.html" style="display: block">Contact Us</a>
+            <a href="sitemap.html" style="display: block">Sitemap</a>
+            <p align="center" style="color: grey">________________________</p>
+            <p style="color: grey" align="center"><a style="font-size: 12px" href="privacy-policy.html">Privacy Policy</a><a style="font-size: 12px" href="terms-use.html">Terms of Use</a></p>
+            <p style="color: grey" align="center"><a style="font-size: 12px" href="disclaimer.html" style="padding: 0px">Disclaimer</a></p>
+          </div>
+          <div class="memberbutton">
+            <a href="login.html">Login </a> •
+            <a href="register.html"> Register</a>
+            <div class="menuwhole" onclick="openNav()">
+              <div class="menuit"></div>
+              <div class="menuit"></div>
+              <div class="menuit"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mainbody">
+      <div class="contentArea">
+        <div class="about">
+        <p style="font-size: 1px">  .</p>
+        <h1>About Market Vision</h1>
+        <h2>Who created Market Vision?</h2>
+        <p>Market Vision was created by two recent college graduates. We are both software developers with a passion for Machine Learning, A/I and Full-Stack Development. <br>
+           In addition to our technical passions we both have a large interest in investment and stocks. </p>
+        <p>You can learn more about each of us on our personal portfolios: <a href="https://www.jamesdenbow.com" target="_blank">James Denbow</a> & <a href="https://www.linkedin.com/in/william-glennon-05237213b/" target="_blank">William Glennon</a></p>
+        <h2>How was the Market Vision website made?</h2>
+        <p>This site was made using a variety of programming languages to highlight different advantages of each language. The front-end of the site was custom built using <br>
+           mainly HTML and CSS. A small amount of PHP was used in special handling such as on the contact form and the search bar. On the back-end we used SQL to <br>
+           create all our databases. A lot of our calculations and predictions are done using Python using a number of different libraries such as Pandas.</p>
+        <p>The site is stored on github in order to allow for easier collaboration between both developers. The site was then uploaded to shared sever hosting service via<br>
+           FileZilla, a File Transfer Protocol handling application.</p>
+        <h2>Where do we get our data?</h2>
+        <p>We use a variety of libraries and APIs to collect our real time market data, historical data and company information.</p>
+        <ul>
+          <li><b>Yahoo Finance API</b> - We utilize this API in order to get real time data on the Market Indexes, Biggest Movers & Highest Volume displayed on the Home page.</li>
+          <li><b>yFinance</b> - This python library is the main datasource for our predictive algorithm and information displayed on our single stock insite page.</li>
+          <li><b>Alpha Avantage API</b> - We utilize the built in functions to power our market indicator search bar.</li>
+          <li><b>Finnhub API</b> - This API is the backend power of our Top Trades functions and predictions.</li>
+        </ul>
+        <p>Other data points, such as Stocks-In-Play, are gathered using a variety of webscrappers.</p>
+        <h2>How do we do our predictions & analysis?</h2>
+        <p>test test test</p>
+        <h3>Have more questions? <a href="contact.html">Contact Us</a>.</h3>
+        <p style="font-size: 1px">  .</p>
+        </div>
+      </div>
+    </div>
+    <div class="backingMetaFooter">
+      <div class="contentAreaMetaFooter">
+        <div class="row">
+          <div class="columnMetaFooter">
+            <p>Meta</p>
+            <div class="metaFooterText">
+              <ul>
+                <li>Login / Logout</li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="columnMetaFooter">
+            <p>About</p>
+            <div class="metaFooterText">
+              <ul>
+                <li><a href="about.html">About Site</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="columnMetaFooter">
+            <p>Support</p>
+            <div class="metaFooterText">
+              <ul>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-use.html">Terms of Use</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="backingFooter">
+      <div class="contentAreaFooter">
+        <p align="center">Copyright © 2020 Market Vision – Created By: <a href="https://www.jamesdenbow.com" target="_blank">James Denbow</a> & <a href="https://www.linkedin.com/in/william-glennon-05237213b/" target="_blank">William Glennon</a></p>
+      </div>
+    </div>
+  </body>
+</html>
