@@ -1,4 +1,7 @@
 import requests
+import os
+import sys
+import timeit
 import yfinance as yf
 from datetime import date
 import plotly.express as px
@@ -10,15 +13,16 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM
 import math
 import pandas as pd
+import json
 
 
-def predict(data):
+def predictData(data):
     data = data.sort_index(ascending=True, axis = 0)
     data.assign(Date=data.index)
     close_data = pd.DataFrame(index=range(0,len(data)),columns=['Date', 'Close'])
     #print("dates: ", dates)
     dates = pd.to_datetime(data.index).tolist()
-    print("asdfafds ", dates[0])
+    #print("asdfafds ", dates[0])
 
     #creates a new df with date as a column, in form of a string
     for i in range(0, len(data)):
@@ -35,8 +39,8 @@ def predict(data):
 
 
     train_split_index = math.floor(len(close_values)*0.85) #also defines how far into the future we're predicting, #points
-    print(close_values)
-    print(train_split_index)
+    #print(close_values)
+    #print(train_split_index)
     train = close_values[0:train_split_index, :]
     valid = close_values[train_split_index:, :]
 
@@ -95,6 +99,7 @@ def predict(data):
         #print("last check: ", x_test_check.shape)
         #x_test_check = np.reshape(x_test_check, (x_test_check.shape[0], x_test_check.shape[1],1))
         predicted_close = network.predict(x_test_check)
+        predicted_close = downscale.inverse_transform(predicted_close)                                         #`~~rescale
         predictions.append(predicted_close)
         #print("p_close", predicted_close)
         #add value to end of array, then go again
@@ -105,7 +110,7 @@ def predict(data):
         #print(x_test_check.shape)
         x_test_check = np.reshape(x_test_check, (1, x_test_check.shape[0],1))
 
-        print("after append: ", x_test_check)
+        #print("after append: ", x_test_check)
 
     print(predictions)
 
@@ -124,15 +129,25 @@ def predict(data):
     #valid['Predictions'] = predicted_close
     #plt.plot(train['Close'])
     #plt.plot(valid[['Close', 'Predictions']])
-    print(len(train))
-    print(len(valid))
+    #print(len(train))
+    #print(len(valid))
+    temp = []
+    for i in range(len(predictions)):
+        temp.append(predictions[i][0][0])
+    print("new predictions: ", predictions[0][0][0], predictions)
+    temp = np.array(temp)
+    temp = temp.tolist()
+    for i in range(len(temp)):
+        temp[i] = round(temp[i], 2)
+    print(temp)
+    return temp
 
 
 
 def getCurrentDate():
     current_date = date.today()
     formatted_date = current_date.strftime("%Y-%m-%d")
-    print(formatted_date)
+    #print(formatted_date)
     return str(formatted_date)
 
 def return_status(return_code):
@@ -149,7 +164,8 @@ def return_status(return_code):
     #prints a brief summary on a company.
 def printSummary(symbol_name):
     symbol = yf.Ticker(symbol_name)
-    print(symbol.info["longBusinessSummary"])
+    #print(symbol.info["longBusinessSummary"])
+    return symbol.info["longBusinessSummary"]
 
 def retrieveSingularData(symbol_name, start_date = "none", end_date = getCurrentDate(), interval_t = "15m", period_t = "1mo"):
     symbol = yf.Ticker(symbol_name)
@@ -202,9 +218,17 @@ def graphMultipleData(data, symbol_names, y_axis = "", graph_style = "lines", gr
     return fig
 
 def rollingMean(data): #gotta remove NaN to line up
-    data_adj_close = data['Close']
-    r_mean = data_adj_close.rolling(window = 8).mean() #window = # datapoints to average
-    return r_mean
+    data_adj_close = data['Close'].copy()
+    data_adj_close.columns = ["rollingMean"]
+    print("datasdfasdf", data_adj_close)
+    data_adj_close = data_adj_close.rolling(window = 8).mean() #window = # datapoints to average
+    #r_mean.dropna()
+    #r_mean.columns = ["rollingMean"]
+    RMvals = list(data_adj_close.values)
+    for i in range(len(RMvals)):
+        RMvals[i] = round(RMvals[i], 2)
+    print("lkflkdsafjaldsk", RMvals)#returns the dataframe version
+    return RMvals, data_adj_close
 
 def graphRollingMean(r_mean, figure, symbol_name, graph_style = "lines"):
     figure.add_trace(go.Scatter(x = r_mean.index,
@@ -243,37 +267,98 @@ def graphRiskAndReturn(data, symbol_name):
                             mode = "markers+text"))
     fig.show()
 
+def convertToJsonFile(symbol_name, dataframe, predictions, rolling_mean, filename = "datacf.json"):
+    try:
+        os.remove(filename)
+    except OSError:
+        pass
 
-symbol_m = "AAPL AMZN"
-symbol_s = "AAPL"
-symbol_test = "AAPL"
+    close_data = dataframe['Close'].tolist()
+    open_data = dataframe['Open'].tolist()
+    #predictions = predictions.tolist()
+    for i in range(len(predictions)):
+        predictions[i] = round(predictions[i], 2)
+    print("predictions in convert: ", predictions, type(predictions))
+    summary = printSummary(symbol_name)     #may need str()
+    dates = list(dataframe.index.strftime("%B %d %Y, %r"))
+    RMdates = dates[7:]
+    lists = ["close_data", "open_data", "predictions", "summary", "dates", "rolling_mean"]
+    dataList = [close_data, open_data, predictions, summary, dates, rolling_mean]
+    #print(symbol_name, close_data, open_data, summary, dates)
+    print("/n Close data: /n", close_data)
+    jsondict = {}
+    for i in range(len(lists)):
+        jsondict[lists[i]] = dataList[i]
+    print(jsondict)
+    with open(filename, 'w') as outfile:
+        json.dump(jsondict, outfile, indent = 4)
+        print("Prediction complete. Data written to ", os.path.abspath(filename))
+
 #data = requests.get("https://api.iextrading.com/1.0/ref-data/symbols")
 #data = yf.download(tickers = symbol, interval = "15m", start = "2020-01-01", end = getCurrentDate())
 #data = yf.download(symbol, interval = "15m", start = "2020-01-01", end = getCurrentDate())
 
-data_m = retrieveMultipleData(symbol_m, interval_t = "15m", period_t = "1mo")
-data_s = retrieveSingularData(symbol_s, interval_t ="15m")
 
-data_test = retrieveSingularData(symbol_test, interval_t = "1m", period_t = "1d")
-print(data_test)
-#print(data['AAPL'])
-#print(data_s)
-#data[symbol]['Close'].plot()
-#plt.show()
+####WORKING
 
-predict(data_test)
+#symbol_m = "AAPL AMZN"
+#symbol_s = "AAPL"
+#symbol_test = "AAPL"
 
-singlegraph = graphSingularData(data_test, symbol_test, "Close")
-rollmean = rollingMean(data_test)
-#print(rollmean)
-graphRollingMean(rollmean, singlegraph, symbol_test)
-retrate = returnRate(data_test)
-graphRR(retrate, symbol_test)
-graphRiskAndReturn(data_test, symbol_test)
-#graphMultipleData(data_m, symbol_m, "Close")
+#data_m = retrieveMultipleData(symbol_m, interval_t = "15m", period_t = "1mo")
+#data_s = retrieveSingularData(symbol_s, interval_t ="15m")
 
-#print(data.columns.values[0][0])
+#data_test = retrieveSingularData(symbol_test, interval_t = "1m", period_t = "1d")
+#print(data_test)
 
-#print(rollingMean(data_s, 100))
+#predictiondata = predictData(data_test)
 
-#if __name__ == '__main__':
+#singlegraph = graphSingularData(data_test, symbol_test, "Close")
+#RMvals, rollmean = rollingMean(data_test)
+#graphRollingMean(rollmean, singlegraph, symbol_test)
+#retrate = returnRate(data_test)
+#graphRR(retrate, symbol_test)
+#graphRiskAndReturn(data_test, symbol_test)
+#convertToJsonFile(symbol_test, data_test, predictiondata, RMvals)
+
+
+#####
+if __name__ == '__main__':
+    start_time = timeit.default_timer()
+    #userInput = input()
+    #userInput = str(userInput)
+    #userInput = userInput.upper()
+
+
+
+    userInput = str(sys.argv[1])
+
+    if sys.argv[1] == "info":
+        print("\ninput order: symbol interval period\n")
+        print("intervals: 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo\n")
+        print("periods: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max\n")
+        stop_time = timeit.default_timer()
+        sys.exit(0)
+
+    userInterval = str(sys.argv[2])
+    userPeriod = str(sys.argv[3])
+
+    userInput = userInput.upper()
+    #data = retrieveSingularData(userInput, interval_t = "1m", period_t = "1d")
+    data = retrieveSingularData(userInput, interval_t = userInterval, period_t = userPeriod)
+    predictiondata = predictData(data)
+
+    #singlegraph = graphSingularData(data, userInput, "Close")
+    RMvals, rollmean = rollingMean(data)
+    #graphRollingMean(rollmean, singlegraph, userInput)
+    retrate = returnRate(data)
+    #graphRR(retrate, userInput)
+    print("predictiondata: \n", predictiondata)
+    convertToJsonFile(userInput, data, predictiondata, RMvals)
+    stop_time = timeit.default_timer()
+    print("program runtime: ", stop_time - start_time, " seconds.")
+
+
+
+
+
