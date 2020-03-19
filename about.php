@@ -1,63 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <!-- Loading & Linking Scipts & Stylesheets -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <meta charset="utf-8">
-    <!-- Website Title & Icon -->
-    <link rel="icon" href="images\icon2.png">
-    <title>Market Vision</title>
-  </head>
-  <body onload="startTime()">
-    <div class="header" id="navbar">
-      <script src="js/basic-scripts.js"></script>
-      <div class="backingTicker">
-        <div class="contentAreaTicker">
-          <div class="toptrades"><b>TOP TRADES </b></div>
-          <div class="clocktop" id="clock" align="right"></div>
-        </div>
-      </div>
-      <div class="navhead">
-        <div class="contentAreaNav">
-          <div class="logocon">
-            <a href="index.html" class="logo"><img id="my-img" src="images/logo2.png" width="200" height="60" onmouseover="hover(this);" onmouseout="unhover(this);"></a>
-          </div>
-          <div class="search">
-            <div class="search-container">
-              <form action="/action_page.php">
-                <input class="searchbar" type="text" placeholder="Search..." name="search">
-                <button type="submit">
-                  <img src="images\searchicon.png" alt="searchicon" width="20" height="20">
-                  <i class="main-search"></i>
-                </button>
-              </form>
-            </div>
-          </div>
-          <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" style="display: block">Top Trades</a>
-            <a href="#" style="display: block">Bookmarks</a>
-            <p align="center" style="color: grey">________________________</p>
-            <a href="about.html" style="display: block">About Site</a>
-            <a href="contact.html" style="display: block">Contact Us</a>
-            <a href="sitemap.html" style="display: block">Sitemap</a>
-            <p align="center" style="color: grey">________________________</p>
-            <p style="color: grey" align="center"><a style="font-size: 12px" href="privacy-policy.html">Privacy Policy</a><a style="font-size: 12px" href="terms-use.html">Terms of Use</a></p>
-            <p style="color: grey" align="center"><a style="font-size: 12px" href="disclaimer.html" style="padding: 0px">Disclaimer</a></p>
-          </div>
-          <div class="memberbutton">
-            <a href="login.html">Login </a> •
-            <a href="register.html"> Register</a>
-            <div class="menuwhole" onclick="openNav()">
-              <div class="menuit"></div>
-              <div class="menuit"></div>
-              <div class="menuit"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <link rel="icon" href="images\icon2.png">
+  <body onload="startTime();">
+    <?php
+      require 'header.php';
+    ?>
     <div class="mainbody">
       <div class="contentArea">
         <div class="about">
@@ -84,7 +31,7 @@
         <p>Other data points, such as Stocks-In-Play, are gathered using a variety of webscrappers.</p>
         <h2>How do we do our predictions & analysis?</h2>
         <p>test test test</p>
-        <h3>Have more questions? <a href="contact.html">Contact Us</a>.</h3>
+        <h3>Have more questions? <a href="contact.php">Contact Us</a>.</h3>
         <p style="font-size: 1px">  .</p>
         </div>
       </div>
@@ -96,8 +43,8 @@
             <p>Meta</p>
             <div class="metaFooterText">
               <ul>
-                <li>Login / Logout</li>
-                <li><a href="sitemap.html">Sitemap</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="sitemap.php">Sitemap</a></li>
               </ul>
             </div>
           </div>
@@ -105,8 +52,8 @@
             <p>About</p>
             <div class="metaFooterText">
               <ul>
-                <li><a href="about.html">About Site</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.php">About Site</a></li>
+                <li><a href="contact.php">Contact Us</a></li>
               </ul>
             </div>
           </div>
@@ -114,9 +61,9 @@
             <p>Support</p>
             <div class="metaFooterText">
               <ul>
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="terms-use.html">Terms of Use</a></li>
-                <li><a href="disclaimer.html">Disclaimer</a></li>
+                <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                <li><a href="terms-use.php">Terms of Use</a></li>
+                <li><a href="disclaimer.php">Disclaimer</a></li>
               </ul>
             </div>
           </div>
