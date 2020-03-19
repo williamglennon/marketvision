@@ -291,7 +291,7 @@ def convertToJsonFile(symbol_name, dataframe, predictions, rolling_mean, filenam
     #lists = ["company_name", "close_data", "open_data", "predictions", "summary", "dates", "rolling_mean"]
     lists = ["symbol_name", "company_name", "website", "summary", "industry", "sector", "marketCap", "openPrice", "previousClose", "fiftyTwoWeekHigh", "fiftyTwoWeekLow", "regularMarketVolume", "close_data", "open_data", "predictions", "dates", "rolling_mean"]
     #dataList = [company_name, close_data, open_data, predictions, summary, dates, rolling_mean[7:]]
-    dataList = [symbol_name, company_name, website, summary, industry, sector, marketCap, openPrice, previousClose, fiftyTwoWeekHigh, fiftyTwoWeekLow, regularMarketVolume, close_data, open_data, predictions, dates, rolling_mean[7:]]
+    dataList = [symbol_name, company_name, website, summary, industry, sector, "{:,}".format(marketCap), round(openPrice, 2), round(previousClose, 2), round(fiftyTwoWeekHigh, 2), round(fiftyTwoWeekLow, 2), "{:,}".format(regularMarketVolume), close_data, open_data, predictions, dates, rolling_mean[7:]]
     #print(symbol_name, close_data, open_data, summary, dates)
     #print("/n Close data: /n", close_data)
     jsondict = {}
