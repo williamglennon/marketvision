@@ -7,8 +7,7 @@
     ?>
     <div class="mainbody">
       <div class="contentArea">
-        <p style="font-size: 1px">  .</p>
-        <form id="regForm" action="php/register.inc.php" method="post">
+        <form style="margin-top:35px" id="regForm" action="./php/register.inc.php" method="post">
           <h1 align="center">Create an Account:</h1>
           <?php
             if (isset($_GET['error'])) {
@@ -33,18 +32,18 @@
             }
           ?>
           <div class="tab">
-            <p>First Name: <input class="reg" placeholder="..." oninput="this.className = ''" name="firstname"></p>
-            <p>Last Name: <input class="reg" placeholder="..." oninput="this.className = ''" name="lastname"></p>
+            <p style="margin-left:20%; margin-top:5px;">First Name: <input class="reg" placeholder="..." oninput="this.className = ''" name="firstname"></p>
+            <p style="margin-left:20%; margin-top:5px;">Last Name: <input class="reg" placeholder="..." oninput="this.className = ''" name="lastname"></p>
           </div>
           <div class="tab">
-            <p>E-Mail: <input class="reg" placeholder="..." oninput="this.className = ''" name="email"></p>
-            <p>Birthday: <input type="date" class="reg" placeholder="Phone..." oninput="this.className = ''" name="birthday"></p>
+            <p style="margin-left:20%; margin-top:5px;">E-Mail: <input style="margin-left:13px;" class="reg" placeholder="..." oninput="this.className = ''" name="email"></p>
+            <p style="margin-left:20%; margin-top:5px;">Birthday: <input type="date" class="reg" placeholder="Phone..." oninput="this.className = ''" name="birthday"></p>
           </div>
           <div class="tab">
-            <p> Username: <input class="reg" placeholder="..." oninput="this.className = ''" name="username"></p>
-            <p>Password: <input type="password" class="reg" placeholder="..." oninput="this.className = ''" name="password"></p>
+            <p style="margin-left:20%; margin-top:5px;"> Username: <input class="reg" placeholder="..." oninput="this.className = ''" name="username"></p>
+            <p style="margin-left:20%; margin-top:5px;">Password: <input style="margin-left:3px;" type="password" class="reg" placeholder="..." oninput="this.className = ''" name="password"></p>
           </div>
-          <div style="overflow:auto;">
+          <div style="overflow:auto; margin-top:5px;">
             <div style="float:right;">
               <button style="padding: 10px 25px;" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
               <button style="padding: 10px 25px; cursor: pointer;" type="button" name="register_but"id="nextBtn" onclick="nextPrev(1)">Next</button>
@@ -128,99 +127,12 @@
             x[n].className += " active";
           }
         </script>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
-        <p style="font-size: 1px">  .</p>
       </div>
     </div>
-    <div class="backingMetaFooter">
-      <div class="contentAreaMetaFooter">
-        <div class="row">
-          <div class="columnMetaFooter">
-            <p>Meta</p>
-            <div class="metaFooterText">
-              <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="sitemap.php">Sitemap</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="columnMetaFooter">
-            <p>About</p>
-            <div class="metaFooterText">
-              <ul>
-                <li><a href="about.php">About Site</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="columnMetaFooter">
-            <p>Support</p>
-            <div class="metaFooterText">
-              <ul>
-                <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                <li><a href="terms-use.php">Terms of Use</a></li>
-                <li><a href="disclaimer.php">Disclaimer</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="backingFooter">
-      <div class="contentAreaFooter">
-        <p align="center">Copyright © 2020 Market Vision – Created By: <a href="https://www.jamesdenbow.com" target="_blank">James Denbow</a> & <a href="https://www.linkedin.com/in/william-glennon-05237213b/" target="_blank">William Glennon</a></p>
-      </div>
+    <div class="footer">
+      <?php
+        require 'footer.php';
+      ?>
     </div>
   </body>
 </html>

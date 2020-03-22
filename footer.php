@@ -38,8 +38,7 @@
     </div>
     <div class="backingFooter">
       <div class="contentAreaFooter">
-        <p style="font-size: 0.5px">  .</p>
-        <p align="center">Copyright © 2020 Market Vision – Created By: <a href="https://www.jamesdenbow.com" target="_blank">James Denbow</a> & <a href="https://www.linkedin.com/in/william-glennon-05237213b/" target="_blank">William Glennon</a></p>
+        <p style="margin-top: 5px;" align="center">Copyright © 2020 Market Vision – Created By: <a href="https://www.jamesdenbow.com" target="_blank">James Denbow</a> & <a href="https://www.linkedin.com/in/william-glennon-05237213b/" target="_blank">William Glennon</a></p>
       </div>
     </div>
   </body>

@@ -48,8 +48,8 @@
           </div>
           <div class="search">
             <div class="search-container">
-              <form action="search.php">
-                <input class="searchbar" type="text" placeholder="Search..." name="search">
+              <form action="php\search.inc.php" method="post">
+                <input class="searchbar" type="text" placeholder="Search by Market Symbol..." name="search">
                 <button type="submit">
                   <img src="images\searchicon.png" alt="searchicon" width="20" height="20">
                   <i class="main-search"></i>
@@ -89,7 +89,7 @@
                 $output = "";
               }
               if(isset($_SESSION['userId'])){
-                echo'<a href="php/logout.inc.php">Logout</a>';
+                echo $_SESSION['userUId'].' • <a href="php/logout.inc.php">Logout</a>';
               }
               else{
                 echo '<a onclick="openForm()">Login </a> •
@@ -101,9 +101,9 @@
                     <input type="text" placeholder="Enter Username or E-Mail" name="user" required>
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" required>
-                    <input type="hidden" name="pagename" value="index.php">
-                    <a align="center" href="password-reset.php">Forgot Password?</a>
-                    <p align="center"><button name="login-sub" type="submit" class="btn">Login</button>
+                    <input type="hidden" name="pagename" value="'.$_SERVER['REQUEST_URI'].'">
+                    <a style="margin-top:10px;" align="center" href="password-reset.php">Forgot Password?</a>
+                    <p style="margin-top:5px;"align="center"><button name="login-sub" type="submit" class="btn">Login</button>
                     <button type="submit" class="btn cancel" onclick="closeForm()">Close</button></p>
                   </form>';
               }

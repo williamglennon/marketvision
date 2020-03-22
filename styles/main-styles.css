@@ -306,7 +306,7 @@ html,body{
   margin: 0 auto;
   max-width: 1250px;
   min-width: 850px;
-  margin-top: -25px;
+  margin-top: -20px;
 }
 /*\ 3.02.03) Styles the links of the Footer \*/
 .backingFooter a:link{
@@ -324,6 +324,11 @@ html,body{
 .backingFooter a:active{
   color: white;
   text-decoration: none;
+}
+/*\ 3.02.04) Footer rise into screen \*/
+.footer{
+  position:
+  margin-top: -40px;
 }
 /*
 ====================================================================
@@ -397,7 +402,6 @@ html,body{
   width: 33.33%;
   line-height: 1px;
 }
-
 
 
 
@@ -536,6 +540,7 @@ input.reg{
 /* Mark input boxes that gets an error on validation: */
 input.reg.invalid {
   background-color: #ffdddd;
+  font-size: 17px;
 }
 
 /* Hide all steps by default: */

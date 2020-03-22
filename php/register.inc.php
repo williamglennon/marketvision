@@ -12,17 +12,17 @@
     //Error Handlers for inputs
     if(!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)){
       //checks for valid email and user
-      header("Location: ../registerpage.php?error=invalidmailuser&fn=".$firstname."&ln=".$lastname."&bd=".$birthday);
+      header("Location: ../register.php?error=invalidmailuser&fn=".$firstname."&ln=".$lastname."&bd=".$birthday);
       exit();
     }
     else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
       //checks for valid email
-      header("Location: ../registerpage.php?error=invalidmail&fn=".$firstname."&ln=".$lastname."&bd=".$birthday."&u=".$username);
+      header("Location: ../register.php?error=invalidmail&fn=".$firstname."&ln=".$lastname."&bd=".$birthday."&u=".$username);
       exit();
     }
     else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
       //checks for user to only include letters and numbers
-      header("Location: ../registerpage.php?error=invaliduser&fn=".$firstname."&ln=".$lastname."&m=".$email."&bd=".$birthday);
+      header("Location: ../register.php?error=invaliduser&fn=".$firstname."&ln=".$lastname."&m=".$email."&bd=".$birthday);
       exit();
     }
     else{
@@ -30,7 +30,7 @@
       $sql = "SELECT username FROM Users WHERE username=? OR email=?;";
       $stmt = mysqli_stmt_init($conn);
       if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("Location: ../registerpage.php?error=sqlerror&fn=".$firstname."&ln=".$lastname."&m=".$email."&bd=".$birthday."&u=".$username);
+        header("Location: ../register.php?error=sqlerror&fn=".$firstname."&ln=".$lastname."&m=".$email."&bd=".$birthday."&u=".$username);
         exit;
       }
       else{
@@ -39,7 +39,7 @@
         mysqli_stmt_store_result($stmt);
         $resultCheck = mysqli_stmt_num_rows($stmt);
         if($resultCheck > 0){
-          header("Location: ../registerpage.php?error=taken&fn=".$firstname."&ln=".$lastname."&bd=".$birthday);
+          header("Location: ../register.php?error=taken&fn=".$firstname."&ln=".$lastname."&bd=".$birthday);
           exit();
         }
         else{
@@ -47,7 +47,7 @@
           $sql = "INSERT INTO Users (firstname, lastname, email, birthday, username, password) VALUES (?, ?, ?, ?, ?, ?);";
           $stmt = mysqli_stmt_init($conn);
           if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: ../registerpage.php?error=sqlerror&fn=".$firstname."&ln=".$lastname."&m=".$email."&bd=".$birthday."&u=".$username);
+            header("Location: ../register.php?error=sqlerror&fn=".$firstname."&ln=".$lastname."&m=".$email."&bd=".$birthday."&u=".$username);
             exit;
           }
           else{
@@ -55,7 +55,7 @@
             mysqli_stmt_bind_param($stmt, "ssssss", $firstname, $lastname, $email, $birthday, $username, $passwordHash);
             mysqli_stmt_execute($stmt);
             //successful signup
-            header("Location: ../registerpage.php?register=success");
+            header("Location: ../register.php?register=success");
             exit();
           }
         }

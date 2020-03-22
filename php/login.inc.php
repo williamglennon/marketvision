@@ -8,14 +8,25 @@
 
     if(empty($username) || empty($passwordNoHash)){
       //One of the fields was left blank
-      header("Location: ../".$previousPage."?error=blankfield&u=".$username);
+
+      if(strpos($previousPage, '?')){
+        header("Location: ..".$previousPage."&error=blankfield&u=".$username);
+      }
+      else{
+        header("Location: ..".$previousPage."?error=blankfield&u=".$username);
+      }
       exit();
     }
     else{
       $sql = "SELECT * FROM Users WHERE username=? OR email=?;";
       $stmt = mysqli_stmt_init($conn);
       if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("Location: ../".$previousPage."?error=sqlerror&u=".$username);
+        if(strpos($previousPage, '?')){
+          header("Location: ..".$previousPage."&error=sqlerror&u=".$username);
+        }
+        else{
+          header("Location: ..".$previousPage."?error=sqlerror&u=".$username);
+        }
         exit();
       }
       else{
@@ -26,7 +37,12 @@
           $passwordCheck = password_verify($passwordNoHash, $row['password']);
           if($passwordCheck == false){
             //error incorrect password
-            header("Location: ../".$previousPage."?error=incorrectpsw&u=".$username);
+            if(strpos($previousPage, '?')){
+              header("Location: ..".$previousPage."&error=incorrectpsw&u=".$username);
+            }
+            else{
+              header("Location: ..".$previousPage."?error=incorrectpsw&u=".$username);
+            }
             exit();
           }
           else if($passwordCheck == true){
@@ -34,18 +50,33 @@
             $_SESSION['userId'] = $row['user_id'];
             $_SESSION['userUId'] = $row['username'];
             //login successful
-            header("Location: ../".$previousPage."?login=success");
+            if(strpos($previousPage, '?')){
+              header("Location: ..".$previousPage."&login=success");
+            }
+            else{
+              header("Location: ..".$previousPage."?login=success");
+            }
             exit();
           }
           else{
             //error incorrect password
-            header("Location: ../".$previousPage."?error=incorrectpsw&u=".$username);
+            if(strpos($previousPage, '?')){
+              header("Location: ..".$previousPage."&error=incorrectpsw&u=".$username);
+            }
+            else{
+              header("Location: ..".$previousPage."?error=incorrectpsw&u=".$username);
+            }
             exit();
           }
         }
         else{
           //error no user found
-          header("Location: ../".$previousPage."?error=nouser");
+          if(strpos($previousPage, '?')){
+            header("Location: ..".$previousPage."&error=nouser");
+          }
+          else{
+            header("Location: ..".$previousPage."?error=nouser");
+          }
           exit();
         }
       }

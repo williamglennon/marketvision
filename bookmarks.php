@@ -8,9 +8,8 @@
     <div class="mainbody">
       <div class="contentArea">
         <div class="about">
-        <p style="font-size: 1px">  .</p>
+        <br>
         <h1>Coming Soon...</h1>
-        <p style="font-size: 1px">  .</p>
         </div>
       </div>
     </div>
