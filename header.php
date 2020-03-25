@@ -49,7 +49,7 @@
           <div class="search">
             <div class="search-container">
               <form action="php\search.inc.php" method="post">
-                <input class="searchbar" id="searchinput" onkeyup="realtimecheck()" type="text" placeholder="Search by Market Symbol..." name="search">
+                <input class="searchbar" id="searchinput" onkeyup="realtimecheck()" type="search" placeholder="Search by Market Symbol..." name="search">
                 <button type="submit">
                   <img src="images\searchicon.png" alt="searchicon" width="20" height="20">
                   <i class="main-search"></i>
@@ -67,19 +67,24 @@
                       }
                       var temp = '1. symbol';
                       var temp2 = '2. name';
-                      var url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + contents + "&apikey=K2B6KVTAUJXXVITZ";
+                      var url = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + contents + "&apikey=API KEY HERE";
                       $.getJSON( url )
                         .done(function( jsonfile ) {
                           document.getElementById("result1symbol").innerHTML = jsonfile.bestMatches[0][ '1. symbol' ];
                           document.getElementById("result1name").innerHTML = jsonfile.bestMatches[0][ '2. name' ];
+                          document.getElementById("symbolpass1").value = jsonfile.bestMatches[0][ '1. symbol' ];
                           document.getElementById("result2symbol").innerHTML = jsonfile.bestMatches[1][ '1. symbol' ];
                           document.getElementById("result2name").innerHTML = jsonfile.bestMatches[1][ '2. name' ];
+                          document.getElementById("symbolpass2").value = jsonfile.bestMatches[1][ '1. symbol' ];
                           document.getElementById("result3symbol").innerHTML = jsonfile.bestMatches[2][ '1. symbol' ];
                           document.getElementById("result3name").innerHTML = jsonfile.bestMatches[2][ '2. name' ];
+                          document.getElementById("symbolpass3").value = jsonfile.bestMatches[2][ '1. symbol' ];
                           document.getElementById("result4symbol").innerHTML = jsonfile.bestMatches[3][ '1. symbol' ];
                           document.getElementById("result4name").innerHTML = jsonfile.bestMatches[3][ '2. name' ];
+                          document.getElementById("symbolpass4").value = jsonfile.bestMatches[3][ '1. symbol' ];
                           document.getElementById("result5symbol").innerHTML = jsonfile.bestMatches[4][ '1. symbol' ];
                           document.getElementById("result5name").innerHTML = jsonfile.bestMatches[4][ '2. name' ];
+                          document.getElementById("symbolpass5").value = jsonfile.bestMatches[4][ '1. symbol' ];
                         })
                         .fail(function( jqxhr, textStatus, error ) {
                           var err = textStatus + ", " + error;
@@ -90,37 +95,61 @@
                   </script>
                   <div id="search-list" style="display: none;">
                     <li style="list-style: none; background-color: black; width: 545px;">
-                      <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;" onclick="location.href='insight.php?symbol=ba'">
-                        <b style="float: left; margin-left: 10px;" id="result1symbol"></b>
-                        <span style="display:inline-block; float: right; margin-right: 10px;" id="result1name"></span>
-                      </button>
+                      <form action="insight.php" method="get">
+                        <input type="hidden" id="symbolpass1" name="symbol" value="">
+                        <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;">
+                          <b style="float: left; margin-left: 10px;" id="result1symbol"></b>
+                          <span style="display:inline-block; float: right; margin-right: 10px;" id="result1name"></span>
+                        </button>
+                      </form>
                     </li>
                     <li style="list-style: none; background-color: black; width: 545px;">
-                      <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;" onclick="location.href='insight.php?symbol=ba'">
-                        <b style="float: left; margin-left: 10px;" id="result2symbol"></b>
-                        <span style="display:inline-block; float: right; margin-right: 10px;" id="result2name"></span>
-                      </button>
+                      <form action="insight.php" method="get">
+                        <input type="hidden" id="symbolpass2" name="symbol" value="">
+                        <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;">
+                          <b style="float: left; margin-left: 10px;" id="result2symbol"></b>
+                          <span style="display:inline-block; float: right; margin-right: 10px;" id="result2name"></span>
+                        </button>
+                      </form>
                     </li>
                     <li style="list-style: none; background-color: black; width: 545px;">
-                      <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;" onclick="location.href='insight.php?symbol=ba'">
-                        <b style="float: left; margin-left: 10px;" id="result3symbol"></b>
-                        <span style="display:inline-block; float: right; margin-right: 10px;" id="result3name"></span>
-                      </button>
+                      <form action="insight.php" method="get">
+                        <input type="hidden" id="symbolpass3" name="symbol" value="">
+                        <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;">
+                          <b style="float: left; margin-left: 10px;" id="result3symbol"></b>
+                          <span style="display:inline-block; float: right; margin-right: 10px;" id="result3name"></span>
+                        </button>
+                      </form>
                     </li>
                     <li style="list-style: none; background-color: black; width: 545px;">
-                      <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;" onclick="location.href='insight.php?symbol=ba'">
-                        <b style="float: left; margin-left: 10px;" id="result4symbol"></b>
-                        <span style="display:inline-block; float: right; margin-right: 10px;" id="result4name"></span>
-                      </button>
+                      <form action="insight.php" method="get">
+                        <input type="hidden" id="symbolpass4" name="symbol" value="">
+                        <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;">
+                          <b style="float: left; margin-left: 10px;" id="result4symbol"></b>
+                          <span style="display:inline-block; float: right; margin-right: 10px;" id="result4name"></span>
+                        </button>
+                      </form>
                     </li>
                     <li style="list-style: none; background-color: black; width: 545px;">
-                      <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;" onclick="location.href='insight.php?symbol=ba'">
-                        <b style="float: left; margin-left: 10px;" id="result5symbol"></b>
-                        <span style="display:inline-block; float: right; margin-right: 10px;" id="result5name"></span>
-                      </button>
+                      <form action="insight.php" method="get">
+                        <input type="hidden" id="symbolpass5" name="symbol" value="">
+                        <button style="border-radius: 0px; color: black; text-decoration: none; width: 98%; margin-left: 1%; height: 120%; padding-top: 13px; padding-bottom: 13px;">
+                          <b style="float: left; margin-left: 10px;" id="result5symbol"></b>
+                          <span style="display:inline-block; float: right; margin-right: 10px;" id="result5name"></span>
+                        </button>
+                      </form>
                     </li>
                     <li style="border-radius: 10px; margin-top: -13px; list-style: none; background-color: black; width: 545px;"><br></li>
                   </div>
+                  <script>
+                    document.getElementById("button1").onclick = buttonpush;
+
+                    function buttonpush(){
+                      var location = "insight.php?symbol=" + jsonfile.bestMatches[0][ '1. symbol' ];
+                      document.getElementById("result1symbol").innerHTML = location;
+                      window.location.href = "google.com";
+                    }
+                  </script>
                 </ul>
               </div>
             </div>
@@ -193,11 +222,24 @@
               }
              ?>
             </div>
-            <div class="menuwhole" onclick="openNav()">
-              <div class="menuit"></div>
-              <div class="menuit"></div>
-              <div class="menuit"></div>
-            </div>
+            <?php
+            if(isset($_SESSION['userId'])){
+              echo '
+              <div style="margin-right:10px; margin-top:-37px" class="menuwhole" onclick="openNav()">
+                <div class="menuit"></div>
+                <div class="menuit"></div>
+                <div class="menuit"></div>
+              </div>';
+            }
+            else{
+              echo '
+              <div style="margin-right:-80px; margin-top:-7px" class="menuwhole" onclick="openNav()">
+                <div class="menuit"></div>
+                <div class="menuit"></div>
+                <div class="menuit"></div>
+              </div>';
+            }
+            ?>
           </div>
         </div>
       </div>

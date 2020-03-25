@@ -33,7 +33,8 @@
         <p style="margin-left:10px; margin-top:5px;">Other data points, such as Stocks-In-Play, are gathered using a variety of webscrappers.</p>
         <br>
         <h2>How do we do our predictions & analysis?</h2>
-        <p style="margin-left:10px; margin-top:5px;">test test test</p>
+        <p style="margin-left:10px; margin-top:5px;">We use the Python3 library Pandas prediction function in order to generate predictive points on our graph presented on the insights page for each individual stock. <br>
+        The training points are read in datapoints from the yFinance python library.</p>
         <br>
         <h3>Have more questions? <a href="contact.php">Contact Us</a>.</h3>
         </div>

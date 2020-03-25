@@ -5,8 +5,8 @@
   $subject = $_POST['subject'];
   $message = $_POST['message'];
 
-  $email_from = 'marketvision@jamesdenbow.com';
-  $to = "james.denbow@yahoo.com";
+  $email_from = 'marketvision@WEBSITE HERE';
+  $to = "EMAIL HERE";
 
   $email_subject = "New Form Submission - $subject";
   $email_body = "Submitter's Name : $fname $lname \n".

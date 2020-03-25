@@ -26,7 +26,7 @@
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => array(
                   "x-rapidapi-host: apidojo-yahoo-finance-v1.p.rapidapi.com",
-                  "x-rapidapi-key: 6b470c0987mshd8d24f1fb82e8abp1b66d9jsn5e960b13d09d"
+                  "x-rapidapi-key: API KEY HERE"
                 ),
               ));
 
@@ -190,7 +190,7 @@
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => array(
                   "x-rapidapi-host: apidojo-yahoo-finance-v1.p.rapidapi.com",
-                  "x-rapidapi-key: 6b470c0987mshd8d24f1fb82e8abp1b66d9jsn5e960b13d09d"
+                  "x-rapidapi-key: API KEY HERE"
                 ),
               ));
 

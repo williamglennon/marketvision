@@ -2,7 +2,7 @@
   $selector = bin2hex(random_bytes(8));
   $token = random_bytes(32);
 
-  $url = "www.marketvision.jamesdenbow.com/forgotten-password.php?selector=".$selector."&validator=".bin2hex($token);
+  $url = "WEBSITE HERE /forgotten-password.php?selector=".$selector."&validator=".bin2hex($token);
 
   $expires = date("U") + 1800; //Adds 1 hour (1800 seconds) to current time
 
@@ -42,7 +42,7 @@
   $message .= "<p>Here is your password reset link: </br>";
   $message .= '<a> href="'.$url.'">'.$url.'</a></p>';
 
-  $headers = "From: MarketVision <marketvision@jamesdenbow.com>\r\n";
+  $headers = "From: MarketVision <marketvision@WEBSTIE HERE\r\n";
   $headers .= "Content-type: text/html\r\n";
 
   mail($to, $subject, $message, $headers);

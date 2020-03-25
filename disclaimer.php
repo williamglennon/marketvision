@@ -19,7 +19,7 @@
         <ul style="margin-left:35px; margin-top:5px;">
           <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Cookies Policy) refers to Market Vision.</li>
           <li><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
-          <li><strong>Website</strong> refers to http://www.marketvision.jamesdenbow.com (Market Vision).</li>        <li><strong>Service</strong> refers to the Website.</li>
+          <li><strong>Website</strong> refers to WEBSITE HERE (Market Vision).</li>        <li><strong>Service</strong> refers to the Website.</li>
         </ul>
         <br>
         <h1>Disclaimer</h1>
