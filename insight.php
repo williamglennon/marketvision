@@ -82,12 +82,16 @@
                 mysqli_stmt_store_result($stmt);
                 $resultCheck = mysqli_stmt_num_rows($stmt);
                 if($resultCheck > 0){
-                  echo'<a style="display: inline; float: right; margin-right: 20px;" href="php\bookmark.inc.php?symbol='.$_GET['symbol'].'&user='.$_SESSION['userId'].'&marked=true"><img src="images\bookmark-fill.png" width="30"height="30"></a>';
+                  $stringhold1 = "'images/bookmark-hover.png'";
+                  $stringhold2 = "'images/bookmark-fill.png'";
+                  echo'<a style="display: inline; float: right; margin-right: 20px;" href="php\bookmark.inc.php?symbol='.$_GET['symbol'].'&user='.$_SESSION['userId'].'&marked=true"><img src="images\bookmark-fill.png" onmouseover="this.src='.$stringhold1.'" onmouseout="this.src='.$stringhold2.'" width="30"height="30"></a>';
                   mysqli_stmt_close($stmt);
                   mysqli_close($conn);
                 }
                 else{
-                  echo'<a style="display: inline; float: right; margin-right: 20px;" href="php\bookmark.inc.php?symbol='.$_GET['symbol'].'&user='.$_SESSION['userId'].'&marked=false"><img src="images\bookmark.png" width="30"height="30"></a>';
+                  $stringhold1 = "'images/bookmark-fill-hover.png'";
+                  $stringhold2 = "'images/bookmark.png'";
+                  echo'<a style="display: inline; float: right; margin-right: 20px;" href="php\bookmark.inc.php?symbol='.$_GET['symbol'].'&user='.$_SESSION['userId'].'&marked=false"><img src="images\bookmark.png" onmouseover="this.src='.$stringhold1.'" onmouseout="this.src='.$stringhold2.'" width="30"height="30"></a>';
                   mysqli_stmt_close($stmt);
                   mysqli_close($conn);
                 }
@@ -123,54 +127,11 @@
         </div>
         <br>
         <div style="border-bottom: 1.5px solid black;" class="row">
-          <div class="insight-maingraph" width="730">
-		  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-		  <script>
-		    $(document).ready(function() {
-		      $.getJSON( "./python/datacf.json" )
-                .done(function( json ) {
-                  document.getElementById("companysummary").innerHTML = json.summary;
-				
-                  var trace1 = {
-                  type: "scatter",
-                  mode: "lines",
-                  name: json.symbol_name,
-                  x: json.dates,
-                  y: json.close_data,
-                  line: {color: '#17BECF'},
-                  }
-
-                  var trace2 = {
-                  type: "scatter",
-                  mode: "lines",
-                  name: 'average',
-                  x: json.dates.slice(7),
-                  y: json.rolling_mean,
-                  line: {color: '#7F7F7F'}
-                  }
-
-                  var allData = [trace1, trace2];
-                  var layout = {
-                  title: json.symbol_name
-                  }
-				  
-                  var config = {responsive: true}
-				  
-                  Plotly.newPlot('stockgraph', allData, layout)
-                })
-                .fail(function( jqxhr, textStatus, error ) {
-                  var err = textStatus + ", " + error;
-                  document.getElementById("companysummary").innerHTML = "Request Failed: " + err;
-                });
-			  });
-			</script>
-			<div style="margin-left:25px;">
-			  <span id="stockgraph" width="730" height="400">
-			</div>
-			<br>
+          <div class="insight-maingraph">
+            <img src="/images/loading.gif" style="margin-bottom:20px;" width="730" height="400">
           </div>
           <div style="display: inline; float: right;" class="insight-maingraph">
-            <br><br><br><br><br>
+            <br><br><br>
             <h2>Current Price: <p style="display: inline;" id="currentprice"></p>  <p style="display: inline; color:green;" id="currentpricediffup"></p><p style="display: inline; color:red;" id="currentpricediffdown"></p></h2>
             <br>
             <h2><p style="display: inline;" id="industry"></p> - <p style="display: inline;" id="sector"></p></h2>

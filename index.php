@@ -132,7 +132,7 @@
             ?>
           </div>
           <div class="columnRes">
-            <h2 align="center">BITCOIN (BTC)</h2>
+            <h2 align="center">BITCOIN</h2>
             <?php
               if ($err) {
                 echo "<p>API Error:" . $err.". Please try again</p>";
@@ -159,7 +159,17 @@
                 $results = mysqli_query($conn, $sql);
 
                 while($row = mysqli_fetch_array($results)){
-                  echo '<li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$row[0].'">'.$row[0].'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>';
+                  echo '
+                  <style>
+                    .frontlink {
+                      color: black;
+                    }
+
+                    .frontlink:hover {
+                      color: grey;
+                    }
+                  </style>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$row[0].'">'.$row[0].'     ↝<img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>';
                 }
               ?>
             </ol>
@@ -194,12 +204,21 @@
               } else {
                 $decode = json_decode($response);
                 echo '<ol style="margin-top:5px;">
-                  <li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[0]->symbol.'">'.$decode->finance->result[2]->quotes[0]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
-                  <li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[1]->symbol.'">'.$decode->finance->result[2]->quotes[1]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
-                  <li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[2]->symbol.'">'.$decode->finance->result[2]->quotes[2]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
-                  <li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[3]->symbol.'">'.$decode->finance->result[2]->quotes[3]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
-                  <li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[4]->symbol.'">'.$decode->finance->result[2]->quotes[4]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
-                  <li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[5]->symbol.'">'.$decode->finance->result[2]->quotes[5]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
+                <style>
+                  .frontlink {
+                    color: black;
+                  }
+
+                  .frontlink:hover {
+                    color: grey;
+                  }
+                </style>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[0]->symbol.'">'.$decode->finance->result[2]->quotes[0]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[1]->symbol.'">'.$decode->finance->result[2]->quotes[1]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[2]->symbol.'">'.$decode->finance->result[2]->quotes[2]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[3]->symbol.'">'.$decode->finance->result[2]->quotes[3]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[4]->symbol.'">'.$decode->finance->result[2]->quotes[4]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
+                  <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[2]->quotes[5]->symbol.'">'.$decode->finance->result[2]->quotes[5]->symbol.'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>
                 </ol>
                 ';
               }
@@ -215,12 +234,21 @@
                 } else {
                   $decode = json_decode($response);
                   echo '<ol style="margin-top:5px;">
-                    <li style="margin-top:5px; margin-left:-30px;"><a style="margin-top:3px; color:green; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[0]->symbol.'">'.$decode->finance->result[0]->quotes[0]->symbol.' ▲</a></li>
-                    <li style="margin-top:5px; margin-left:-30px;"><a style="margin-top:3px; color:green; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[1]->symbol.'">'.$decode->finance->result[0]->quotes[1]->symbol.' ▲</a></li>
-                    <li style="margin-top:5px; margin-left:-30px;"><a style="margin-top:3px; color:green; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[2]->symbol.'">'.$decode->finance->result[0]->quotes[2]->symbol.' ▲</a></li>
-                    <li style="margin-top:5px; margin-left:-30px;"><a style="margin-top:3px; color:green; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[3]->symbol.'">'.$decode->finance->result[0]->quotes[3]->symbol.' ▲</a></li>
-                    <li style="margin-top:5px; margin-left:-30px;"><a style="margin-top:3px; color:green; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[4]->symbol.'">'.$decode->finance->result[0]->quotes[4]->symbol.' ▲</a></li>
-                    <li style="margin-top:5px; margin-left:-30px;"><a style="margin-top:3px; color:green; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[5]->symbol.'">'.$decode->finance->result[0]->quotes[5]->symbol.' ▲</a></li>
+                    <style>
+                      .frontlink2 {
+                        color: green;
+                      }
+
+                      .frontlink2:hover {
+                        color: darkgreen;
+                      }
+                    </style>
+                    <li style="margin-top:5px; margin-left:-30px;"><a class="frontlink2" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[0]->symbol.'">'.$decode->finance->result[0]->quotes[0]->symbol.' ▲</a></li>
+                    <li style="margin-top:5px; margin-left:-30px;"><a class="frontlink2" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[1]->symbol.'">'.$decode->finance->result[0]->quotes[1]->symbol.' ▲</a></li>
+                    <li style="margin-top:5px; margin-left:-30px;"><a class="frontlink2" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[2]->symbol.'">'.$decode->finance->result[0]->quotes[2]->symbol.' ▲</a></li>
+                    <li style="margin-top:5px; margin-left:-30px;"><a class="frontlink2" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[3]->symbol.'">'.$decode->finance->result[0]->quotes[3]->symbol.' ▲</a></li>
+                    <li style="margin-top:5px; margin-left:-30px;"><a class="frontlink2" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[4]->symbol.'">'.$decode->finance->result[0]->quotes[4]->symbol.' ▲</a></li>
+                    <li style="margin-top:5px; margin-left:-30px;"><a class="frontlink2" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[0]->quotes[5]->symbol.'">'.$decode->finance->result[0]->quotes[5]->symbol.' ▲</a></li>
                     </ol>
                   ';
                 }
@@ -234,12 +262,21 @@
                 } else {
                   $decode = json_decode($response);
                   echo '<ol style="margin-top:5px; margin-left:10px;">
-                    <li style="margin-top:5px; margin-left:-20px;"><a style="margin-top:3px; margin-left:10px; color:red; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[0]->symbol.'">'.$decode->finance->result[1]->quotes[0]->symbol.' ▼</a></li>
-                    <li style="margin-top:5px; margin-left:-20px;"><a style="margin-top:3px; margin-left:10px; color:red; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[1]->symbol.'">'.$decode->finance->result[1]->quotes[1]->symbol.' ▼</a></li>
-                    <li style="margin-top:5px; margin-left:-20px;"><a style="margin-top:3px; margin-left:10px; color:red; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[2]->symbol.'">'.$decode->finance->result[1]->quotes[2]->symbol.' ▼</a></li>
-                    <li style="margin-top:5px; margin-left:-20px;"><a style="margin-top:3px; margin-left:10px; color:red; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[3]->symbol.'">'.$decode->finance->result[1]->quotes[3]->symbol.' ▼</a></li>
-                    <li style="margin-top:5px; margin-left:-20px;"><a style="margin-top:3px; margin-left:10px; color:red; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[4]->symbol.'">'.$decode->finance->result[1]->quotes[4]->symbol.' ▼</a></li>
-                    <li style="margin-top:5px; margin-left:-20px;"><a style="margin-top:3px; margin-left:10px; color:red; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[5]->symbol.'">'.$decode->finance->result[1]->quotes[5]->symbol.' ▼</a></li>
+                    <style>
+                      .frontlink3 {
+                        color: red;
+                      }
+
+                      .frontlink3:hover {
+                        color: darkred;
+                      }
+                    </style>
+                    <li style="margin-top:5px; margin-left:-20px;"><a class="frontlink3" style="margin-top:3px; margin-left:10px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[0]->symbol.'">'.$decode->finance->result[1]->quotes[0]->symbol.' ▼</a></li>
+                    <li style="margin-top:5px; margin-left:-20px;"><a class="frontlink3" style="margin-top:3px; margin-left:10px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[1]->symbol.'">'.$decode->finance->result[1]->quotes[1]->symbol.' ▼</a></li>
+                    <li style="margin-top:5px; margin-left:-20px;"><a class="frontlink3" style="margin-top:3px; margin-left:10px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[2]->symbol.'">'.$decode->finance->result[1]->quotes[2]->symbol.' ▼</a></li>
+                    <li style="margin-top:5px; margin-left:-20px;"><a class="frontlink3" style="margin-top:3px; margin-left:10px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[3]->symbol.'">'.$decode->finance->result[1]->quotes[3]->symbol.' ▼</a></li>
+                    <li style="margin-top:5px; margin-left:-20px;"><a class="frontlink3" style="margin-top:3px; margin-left:10px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[4]->symbol.'">'.$decode->finance->result[1]->quotes[4]->symbol.' ▼</a></li>
+                    <li style="margin-top:5px; margin-left:-20px;"><a class="frontlink3" style="margin-top:3px; margin-left:10px; text-decoration: none;" href="insight.php?symbol='.$decode->finance->result[1]->quotes[5]->symbol.'">'.$decode->finance->result[1]->quotes[5]->symbol.' ▼</a></li>
                     </ol>
                   ';
                 }
@@ -283,7 +320,17 @@
                     $results = mysqli_query($conn, $sql);
                     echo'<ol  style="margin-top:5px;">';
                     while($row = mysqli_fetch_array($results)){
-                      echo '<li><a style="margin-top:3px; color:black; text-decoration: none;" href="insight.php?symbol='.$row[0].'">'.$row[0].'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>';
+                      echo '
+                        <style>
+                          .frontlink {
+                            color: black;
+                          }
+
+                          .frontlink:hover {
+                            color: grey;
+                          }
+                        </style>
+                        <li><a class="frontlink" style="margin-top:3px; text-decoration: none;" href="insight.php?symbol='.$row[0].'">'.$row[0].'     <img style="display:inline-block; float:middle; margin-bottom:-9px;" src="images\graph.png" width="30"height="30"></a></li>';
                     }
                     echo'</ol>';
                   }
@@ -311,17 +358,41 @@
           <div class="columnNewsLines">
             <h2 align="center">New York Times: Business</h2>
             <br>
-            <div id="widgetmain" style="margin-top:15px;text-align:left;overflow-y:auto;overflow-x:hidden;width:95%;background-color:#transparent; border:0px solid #333333;"><div id="rsswidget" style="height:1000px;"><iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1583654805179&amp;x=https%3A%2F%2Frss.nytimes.com%2Fservices%2Fxml%2Frss%2Fnyt%2FBusiness.xml&amp;w=250&amp;h=700&amp;bc=333333&amp;bw=0&amp;bgc=transparent&amp;m=8&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=0000FF&amp;ls=20&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=10" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:1000px;" id="rssOutput">Reading RSS Feed ...</iframe></div><div style="text-align:right;margin-bottom:0;border-top:0px solid #333333;" id="widgetbottom"><span style="font-size:70%">&nbsp;</span><br></div></div>
+            <div id="widgetmain" style="overflow: hidden; margin-top:15px;text-align:left;overflow-y:auto;overflow-x:hidden;width:95%;background-color:#transparent; border:0px solid #333333;">
+              <div id="rsswidget" style="overflow: hidden; height:1000px;">
+                <iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1583654805179&amp;x=https%3A%2F%2Frss.nytimes.com%2Fservices%2Fxml%2Frss%2Fnyt%2FBusiness.xml&amp;w=250&amp;h=700&amp;bc=333333&amp;bw=0&amp;bgc=transparent&amp;m=20&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=0000FF&amp;ls=20&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=10" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:1000px;" id="rssOutput">Reading RSS Feed ...</iframe>
+              </div>
+              <div style="overflow: hidden; text-align:right;margin-bottom:0;border-top:0px solid #333333;" id="widgetbottom">
+                <span style="font-size:70%">&nbsp;</span>
+                <br>
+              </div>
+            </div>
           </div>
           <div class="columnNewsLines">
             <h2 align="center">BBC: Business</h2>
             <br>
-            <div id="widgetmain" style="margin-top:15px;text-align:left;overflow-y:auto;overflow-x:hidden;width:95%;background-color:#transparent; border:0px solid #333333;"><div id="rsswidget" style="height:1000px;"><iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1583654677154&amp;x=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml&amp;w=250&amp;h=700&amp;bc=333333&amp;bw=0&amp;bgc=transparent&amp;m=8&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=0000FF&amp;ls=20&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=10" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:1000px;" id="rssOutput">Reading RSS Feed ...</iframe></div><div style="text-align:right;margin-bottom:0;border-top:0px solid #333333;" id="widgetbottom"><span style="font-size:70%">&nbsp;</span><br></div></div>
+            <div id="widgetmain" style="overflow: hidden; margin-top:15px;text-align:left;overflow-y:auto;overflow-x:hidden;width:95%;background-color:#transparent; border:0px solid #333333;">
+              <div id="rsswidget" style="height:1000px;">
+                <iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1583654677154&amp;x=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fbusiness%2Frss.xml&amp;w=250&amp;h=700&amp;bc=333333&amp;bw=0&amp;bgc=transparent&amp;m=20&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=0000FF&amp;ls=20&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=10" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:1000px;" id="rssOutput">Reading RSS Feed ...</iframe>
+              </div>
+              <div style="overflow: hidden; text-align:right;margin-bottom:0;border-top:0px solid #333333;" id="widgetbottom">
+                <span style="font-size:70%">&nbsp;</span>
+                <br>
+              </div>
+            </div>
           </div>
           <div class="columnNewsLines">
             <h2 align="center">CNBC</h2>
             <br>
-            <div id="widgetmain" style="margin-top:15px;text-align:left;overflow-y:auto;overflow-x:hidden;width:95%;background-color:#transparent; border:0px solid #333333;"><div id="rsswidget" style="height:1000px;"><iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1583655496650&amp;x=http%3A%2F%2Fwww.cnbc.com%2Fid%2F19746125%2Fdevice%2Frss%2Frss.xml&amp;w=250&amp;h=700&amp;bc=333333&amp;bw=0&amp;bgc=transparent&amp;m=7&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=0000FF&amp;ls=20&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=10" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:1000px;" id="rssOutput">Reading RSS Feed ...</iframe></div><div style="text-align:right;margin-bottom:0;border-top:0px solid #333333;" id="widgetbottom"><span style="font-size:70%">&nbsp;</span><br></div></div>
+            <div id="widgetmain" style="overflow: hidden; margin-top:15px;text-align:left;overflow-y:auto;overflow-x:hidden;width:95%;background-color:#transparent; border:0px solid #333333;">
+              <div id="rsswidget" style="height:1000px;">
+                <iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1583655496650&amp;x=http%3A%2F%2Fwww.cnbc.com%2Fid%2F19746125%2Fdevice%2Frss%2Frss.xml&amp;w=250&amp;h=700&amp;bc=333333&amp;bw=0&amp;bgc=transparent&amp;m=20&amp;it=false&amp;t=(default)&amp;tc=333333&amp;ts=15&amp;tb=transparent&amp;il=true&amp;lc=0000FF&amp;ls=20&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=10" border="0" hspace="0" vspace="0" frameborder="no" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:100%; height:1000px;" id="rssOutput">Reading RSS Feed ...</iframe>
+              </div>
+              <div style="overflow: hidden; text-align:right;margin-bottom:0;border-top:0px solid #333333;" id="widgetbottom">
+                <span style="font-size:70%">&nbsp;</span>
+                <br>
+              </div>
+            </div>
           </div>
         </div>
       </div>

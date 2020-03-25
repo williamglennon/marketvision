@@ -4,10 +4,10 @@
   $input = strtoupper($_POST['search']);
 
   $command = escapeshellcmd($input.' ../python/symbolcheck.py');
-  //$output = shell_exec($command);
-  //echo $output;
+  $output = shell_exec($command);
+  echo $output;
 
-  $output = 'true';
+  //$output = 'true';
 /*
   if($output == '1'){
     header("Location: ../insight-error.php?symbol=".$input);

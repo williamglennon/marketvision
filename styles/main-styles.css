@@ -184,9 +184,10 @@ html,body{
 */
 /*\ 2.02.31) Sets the position of the menu button \*/
 .menuwhole{
+  position:static;
   float: right;
   margin-right: -70px;
-  margin-top: -7px;
+  margin-top: -70px;
 }
 /*\ 2.02.32) Stylizes the menu button \*/
 .menuwhole:hover{

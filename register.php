@@ -10,21 +10,45 @@
         <form style="margin-top:35px" id="regForm" action="./php/register.inc.php" method="post">
           <h1 align="center">Create an Account:</h1>
           <?php
+            $usernametemp = '';
+            $mailtemp = '';
+            $bdaytemp = '';
+            $lastnametemp = '';
+            $firstnametemp = '';
             if (isset($_GET['error'])) {
               if ($_GET['error'] == "invalidmailuser") {
                 echo '<p style="text-align: center; background-color: red; width: 90%; border-radius: 5px; color:white;">Both the Email & Username entered are invalid. <br> Please enter a valid Email. Please only use English Numbers & Letters in your username.</p>';
+                $bdaytemp = $_GET['fn'];
+                $lastnametemp = $_GET['ln'];
+                $firstnametemp = $_GET['bd'];
               }
               else if ($_GET['error'] == "invalidmail"){
                 echo '<p style="text-align: center; background-color: red; width: 90%; border-radius: 5px; color:white;">Please enter a valid Email.</p>';
+                $bdaytemp = $_GET['fn'];
+                $lastnametemp = $_GET['ln'];
+                $firstnametemp = $_GET['bd'];
+                $usernametemp = $_GET['u'];
               }
               else if ($_GET['error'] == "invaliduser"){
                 echo '<p style="text-align: center; background-color: red; width: 90%; border-radius: 5px; color:white;">Please only use English Numbers & Letters in your username.</p>';
+                $bdaytemp = $_GET['fn'];
+                $lastnametemp = $_GET['ln'];
+                $firstnametemp = $_GET['bd'];
+                $mailtemp = $_GET['m'];
               }
               else if ($_GET['error'] == "sqlerror"){
                 echo '<p style="text-align: center; background-color: red; width: 90%; border-radius: 5px; color:white;">An error occured with our Databases. Please try again; <br> If the error continues please let us know via the Contact Us page.</p>';
+                $bdaytemp = $_GET['fn'];
+                $lastnametemp = $_GET['ln'];
+                $firstnametemp = $_GET['bd'];
+                $mailtemp = $_GET['m'];
+                $usernametemp = $_GET['u'];
               }
               else if ($_GET['error'] == "taken"){
                 echo '<p style="text-align: center; background-color: red; width: 90%; border-radius: 5px; color:white;">The Username or Email entered is already in use, please try again.</p>';
+                $bdaytemp = $_GET['fn'];
+                $lastnametemp = $_GET['ln'];
+                $firstnametemp = $_GET['bd'];
               }
             }
             else if (isset($_GET['register'])){
@@ -32,16 +56,16 @@
             }
           ?>
           <div class="tab">
-            <p style="margin-left:20%; margin-top:5px;">First Name: <input class="reg" placeholder="..." oninput="this.className = ''" name="firstname"></p>
-            <p style="margin-left:20%; margin-top:5px;">Last Name: <input class="reg" placeholder="..." oninput="this.className = ''" name="lastname"></p>
+            <p style="margin-left:20%; margin-top:5px;">First Name: <input style="font-size: 20px;" class="reg" value ="<?php $firstnametemp ?>" placeholder="..." oninput="this.className = ''" name="firstname"></p>
+            <p style="margin-left:20%; margin-top:5px;">Last Name: <input style="font-size: 20px;" class="reg" ="<?php $lastnametemp ?>" placeholder="..." oninput="this.className = ''" name="lastname"></p>
           </div>
           <div class="tab">
-            <p style="margin-left:20%; margin-top:5px;">E-Mail: <input style="margin-left:13px;" class="reg" placeholder="..." oninput="this.className = ''" name="email"></p>
-            <p style="margin-left:20%; margin-top:5px;">Birthday: <input type="date" class="reg" placeholder="Phone..." oninput="this.className = ''" name="birthday"></p>
+            <p style="margin-left:20%; margin-top:5px;">E-Mail: <input style="font-size: 20px;" style="margin-left:13px;" class="reg" ="<?php $mailtemp ?>" placeholder="..." oninput="this.className = ''" name="email"></p>
+            <p style="margin-left:20%; margin-top:5px;">Birthday: <input style="font-size: 20px;" type="date" class="reg" ="<?php $bdaytemp ?>" placeholder="Phone..." oninput="this.className = ''" name="birthday"></p>
           </div>
           <div class="tab">
-            <p style="margin-left:20%; margin-top:5px;"> Username: <input class="reg" placeholder="..." oninput="this.className = ''" name="username"></p>
-            <p style="margin-left:20%; margin-top:5px;">Password: <input style="margin-left:3px;" type="password" class="reg" placeholder="..." oninput="this.className = ''" name="password"></p>
+            <p style="margin-left:20%; margin-top:5px;"> Username: <input style="font-size: 20px;" class="reg" ="<?php $usernametemp ?>" placeholder="..." oninput="this.className = ''" name="username"></p>
+            <p style="margin-left:20%; margin-top:5px;">Password: <input style="font-size: 20px;" style="margin-left:3px;" type="password" class="reg" placeholder="..." oninput="this.className = ''" name="password"></p>
           </div>
           <div style="overflow:auto; margin-top:5px;">
             <div style="float:right;">
